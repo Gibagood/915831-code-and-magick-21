@@ -1,0 +1,9 @@
+{
+    "compile-hero.disable-compile-files-on-did-save-code": true
+}
+
+"eslint.enable": true,
+"eslint.autoFixOnSave": true,
+"eslint.options": {
+   "configFile": "/d/6_courses/HTMLacademy/projects/915831-code-and-magick-21"
+}
