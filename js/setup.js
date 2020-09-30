@@ -7,34 +7,35 @@
 
   const EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 
-  const quantityWizards = 4;
+  const QUANTITY_WIZARDS = 4;
 
   const userDialog = document.querySelector('.setup');
   userDialog.classList.remove('hidden');
 
-  const similarListElement = document.querySelector('.setup-similar-list');
+  const similarListElement = userDialog.querySelector('.setup-similar-list');
   const similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
-  const randomIndex = function randomIndex(lngth) {
-    const randomNum = Math.floor(Math.random() * lngth);
-    return randomNum;
+  const randomIndex = function randomIndex(array) {
+    const randomNum = Math.floor(Math.random() * array.length);
+    const randomNumIndex = array[randomNum];
+    return randomNumIndex;
   };
 
   const renderWizard = function renderWizard() {
     const wizardElement = similarWizardTemplate.cloneNode(true);
 
-    wizardElement.querySelector('.setup-similar-label').textContent = `${WIZARD_NAMES[randomIndex(WIZARD_NAMES.length)]} ${WIZARD_SURNAMES[randomIndex(WIZARD_SURNAMES.length)]}`;
+    wizardElement.querySelector('.setup-similar-label').textContent = `${randomIndex(WIZARD_NAMES)} ${randomIndex(WIZARD_SURNAMES)}`;
 
-    wizardElement.querySelector('.wizard-coat').style.fill = COAT_COLOR[randomIndex(COAT_COLOR.length)];
+    wizardElement.querySelector('.wizard-coat').style.fill = randomIndex(COAT_COLOR);
 
-    wizardElement.querySelector('.wizard-eyes').style.fill = EYES_COLOR[randomIndex(EYES_COLOR.length)];
+    wizardElement.querySelector('.wizard-eyes').style.fill = randomIndex(EYES_COLOR);
     return wizardElement;
   };
 
   const fragment = document.createDocumentFragment();
-  for (let i = 0; i < quantityWizards; i += 1) {
+  for (let i = 0; i < QUANTITY_WIZARDS; i += 1) {
     fragment.appendChild(renderWizard(i));
   }
   similarListElement.appendChild(fragment);
